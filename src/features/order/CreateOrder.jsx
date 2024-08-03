@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Form, redirect } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -38,7 +39,8 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Let &apos s go!</h2>
 
-      <form>
+      {/* <Form method="POST" action="/order/new"> */}
+      <Form method="POST" action="/order/new">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -68,13 +70,32 @@ function CreateOrder() {
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
-
+        <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div>
           <button>Order now</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
+}
+export async function action({ request }) {
+  const formData = await request.formData(); // formData is provided by the browser
+  const data = Object.fromEntries(formData); // Convert the formData Object to JavaScipt object
+
+  //To modify the order  ==> convert the cart back to object and add the priority key as true or false
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "on",
+  };
+  console.log(order);
+
+  //send request to API
+  const newOrder = await createOrder(order);
+
+  //useNavigate hook can only be call inside component
+  //Redirect is function provided by React Router DOM
+  return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
