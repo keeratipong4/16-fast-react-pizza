@@ -55,3 +55,5 @@ export const getTotalCartQuatity = (state) =>
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((acc, item) => acc + item.totalPrice, 0);
 export const getCart = (state) => state.cart.cart;
+export const getCurrentQauntityById = (id) => (state) =>
+  state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
