@@ -50,6 +50,7 @@ export const {
   clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;
+
 ////Redux Selector function
 export const getTotalCartQuatity = (state) =>
   state.cart.cart.reduce((acc, item) => acc + item.quantity, 0);
