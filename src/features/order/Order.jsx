@@ -1,7 +1,7 @@
 // Test ID: IIDSAT
 // Test ID2: CQE92U
 
-import { useLoaderData } from "react-router-dom";
+import { useFetcher, useLoaderData } from "react-router-dom";
 import OrderItem from "./OrderItem";
 import {
   calcMinutesLeft,
@@ -9,6 +9,8 @@ import {
   formatDate,
 } from "../../utils/helpers";
 import { getOrder } from "../../services/apiRestaurant";
+import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
 
 // const order = {
 //   id: "ABCDEF",
@@ -47,6 +49,11 @@ import { getOrder } from "../../services/apiRestaurant";
 
 function Order() {
   const order = useLoaderData();
+  const fetcher = useFetcher();
+  useEffect(() => {
+    // fetch the menu data only there is no data and fetch is not working
+    if (!fetcher.data && fetcher.state === "idle") fetcher.load("/menu");
+  }, [fetcher]);
 
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
@@ -90,7 +97,18 @@ function Order() {
       </div>
       <ul className="divide-y divide-stone-200 border-b border-t">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.pizzaId} />
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            //when fetcher is loading ==> return true
+            isLoadingIngredients={fetcher.state === "loading"}
+            ingredients={
+              //if the pizza is found return the ingredient,
+              //otherwise return an empty array (to prevent the initial 'idle' state)
+              fetcher?.data?.find((el) => (el.id = item.pizzaId))
+                ?.ingredients ?? []
+            }
+          />
         ))}
       </ul>
       <div className="space-y-2 bg-stone-200 px-6 py-5">
@@ -106,6 +124,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }
