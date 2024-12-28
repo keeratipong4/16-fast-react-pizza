@@ -25,7 +25,7 @@ function CreateOrder() {
     error: errorAddress,
   } = useSelector((state) => state.user);
   const isLoadingAddress = addressStatus === "loading";
-  const isSubmiting = navigation.state === "submitting";
+  const isSubmitting = navigation.state === "submitting";
   const formError = useActionData();
   const dispatch = useDispatch();
 
@@ -87,7 +87,7 @@ function CreateOrder() {
           </div>
 
           {!position.latitude && !position.longitude && (
-            <span className="absolute right-[3px] top-[3px] z-50 md:right-[5px] md:top-[5px]">
+            <span className="absolute right-[3px] top-[35px] z-50 sm:top-[3px] md:right-[5px] md:top-[5px]">
               <Button
                 type="small"
                 disabled={isLoadingAddress}
@@ -126,8 +126,8 @@ function CreateOrder() {
           }
         />
         <div>
-          <Button disabled={isSubmiting || isLoadingAddress} type="primary">
-            {isSubmiting
+          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
+            {isSubmitting
               ? `Placing order`
               : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
