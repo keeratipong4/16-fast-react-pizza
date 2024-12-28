@@ -18,7 +18,7 @@ function CartOverview() {
       </p>
 
       <Link className="flex items-center gap-2" to="/cart">
-        <span>
+        <span className="h-7 w-7">
           <CartIcon />
         </span>
         Open cart &rarr;
