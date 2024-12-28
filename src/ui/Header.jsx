@@ -6,7 +6,7 @@ import PizzaIcon from "../utils/PizzaIcon";
 function Header() {
   return (
     <header className="flex items-center justify-between border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6">
-      <Link to="/" className="flex items-center gap-1 tracking-widest">
+      <Link to="/" className="flex items-center gap-1 sm:tracking-widest">
         Fast React Pizza.Co
         {/* <span className="text-3xl"> 🍕</span> */}
         <span className="h-10 w-10">
