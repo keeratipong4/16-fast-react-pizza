@@ -4,6 +4,7 @@ import CartItem from "../cart/CartItem";
 import EmptyCart from "../cart/EmptyCart";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart } from "./cartSlice";
+import { BackIcon } from "../../utils/Icons";
 
 function Cart() {
   // const cart = fakeCart;
@@ -13,7 +14,12 @@ function Cart() {
   if (!cart.length) return <EmptyCart />;
   return (
     <div className="px-4 py-3">
-      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
+      <LinkButton to="/menu">
+        <span>
+          <BackIcon size={22} />
+        </span>{" "}
+        Back to menu
+      </LinkButton>
 
       <h2 className="mt-7 text-xl font-semibold">Your cart, {username}</h2>
       <ul className="mt-3 divide-y divide-stone-200 border-b">
