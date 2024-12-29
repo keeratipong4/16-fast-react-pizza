@@ -40,7 +40,7 @@ function CreateOrder() {
   return (
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">
-        Ready to order? Let &apos s go!
+        Ready to order? Let&apos;s go!
       </h2>
 
       {/* <Form method="POST" action="/order/new"> */}
