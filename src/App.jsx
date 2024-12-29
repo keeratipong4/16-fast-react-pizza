@@ -14,9 +14,13 @@ import Error from "./ui/Error";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    errorElement: <Error />,
+    errorElement: (
+      <AppLayout>
+        <Error />
+      </AppLayout>
+    ),
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/", element: <Home />, errorElement: <Error /> },
       {
         path: "/menu",
         element: <Menu />,
