@@ -4,7 +4,6 @@ import { BackIcon, CartEmptyIcon } from "../../utils/Icons";
 function EmptyCart() {
   return (
     <div className="px3 mx-5 py-4">
-      {/* <LinkButton to="/menu">&larr; Back to menu</LinkButton> */}
       <LinkButton to="/menu" className="flex">
         <span>
           <BackIcon size={22} />
