@@ -65,9 +65,7 @@ function Order() {
     estimatedDelivery,
     cart,
   } = order;
-
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -84,7 +82,6 @@ function Order() {
           </span>
         </div>
       </div>
-
       <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
         <p className="font-medium">
           {deliveryIn >= 0
@@ -105,7 +102,7 @@ function Order() {
             ingredients={
               //if the pizza is found return the ingredient,
               //otherwise return an empty array (to prevent the initial 'idle' state)
-              fetcher?.data?.find((el) => (el.id = item.pizzaId))
+              fetcher?.data?.find((el) => el.id === item.pizzaId)
                 ?.ingredients ?? []
             }
           />
