@@ -19,5 +19,12 @@ It’s an application for online customer making pizza order
 - Redux
 - Tailwind CSS
 
+## Live Demo
+
 The app is deployed on Vercel. You can check it out live at:  
 [Fast React Pizza](https://16-fast-react-pizza-seven.vercel.app/)
+
+## Youtube
+
+I made a video explaining how I Implemented the project  
+[Youtube Video](https://youtu.be/yF-5O3hOREQ)
