@@ -24,18 +24,18 @@ const cartSlice = createSlice({
       //payload=pizzaId
       state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
     },
-    increaseItemQuantity(state, action) {
-      //payload=pizzaId
-      const item = state.cart.find((item) => item.pizzaId === action.payload);
-      item.quantity++;
-      item.totalPrice = item.quantity * item.unitPrice;
-    },
     decreaseItemQuantity(state, action) {
       //payload=pizzaId
       const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;
       if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
+    },
+    increaseItemQuantity(state, action) {
+      //payload=pizzaId
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+      item.quantity++;
+      item.totalPrice = item.quantity * item.unitPrice;
     },
     clearCart(state) {
       state.cart = [];
